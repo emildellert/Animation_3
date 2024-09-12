@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive GSAP SVG Animation</title>
+    <style>
+        html, body {
+            height: 100%; /* Ensure full height */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            background: transparent; /* Set background to transparent */
+        }
+
+        .svg-container {
+            width: 100%; /* Takes the full width of its parent container */
+            height: auto; /* Adjusts height automatically based on the width to maintain aspect ratio */
+            display: flex; /* Ensures flex properties for the container */
+            justify-content: center; /* Center horizontally inside the container */
+            align-items: center; /* Center vertically inside the container */
+            overflow: hidden; /* Ensures no overflow */
+        }
+
+        .svg-container svg {
+            width: 100%; /* SVG fills the container */
+            height: auto; /* Height adjusts automatically */
+            display: block;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.10.4/dist/gsap.min.js"></script>
+</head>
+<body>
+    <div class="svg-container">
+        <!-- Inline SVG -->
+        <svg viewBox="0 0 264.58335 264.58335" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <g id="layer1">
+                <g id="house">
+                    <rect id="rect1" style="fill:#cfe3e0;" width="64.484894" height="66.463142" x="93.193924" y="132.29167" ry="2.5842869" />
+                    <path id="rect2" style="fill:#cfe3e0;" d="m 122.85209,90.652351 c 1.2391,-0.7172 2.58428,1.152592 2.58428,2.584287 v 36.470752 c 0,1.43169 -1.15259,2.58429 -2.58428,2.58429 H 72.919477 c -2.636056,0 30.056823,-33.801445 49.932613,-41.639329 z" />
+                    <path id="rect2-3" style="fill:#cfe3e0;" d="m 128.02065,90.652349 c -1.2391,-0.7172 -2.58428,1.152592 -2.58428,2.584288 v 36.470753 c 0,1.43169 1.15259,2.58429 2.58428,2.58429 h 49.93261 c 2.63606,0 -30.05682,-33.801449 -49.93261,-41.639331 z" />
+                </g>
+                <rect id="car" style="fill:#0000ff;" width="68.555779" height="35.06049" x="87.338181" y="45.390808" ry="2.5842869" />
+                <ellipse id="sun" style="fill:#ffff00;" cx="210.04988" cy="74.503532" rx="27.860567" ry="24.730165" />
+            </g>
+        </svg>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sun = document.getElementById('sun');
+            const car = document.getElementById('car');
+
+            // GSAP Animation for the Sun
+            gsap.fromTo(sun, {
+                cx: 1000
+            }, {
+                cx: 0,
+                duration: 2,
+                repeat: -1,
+                ease: "none"
+            });
+
+            // GSAP Timeline for the Car
+            const tl = gsap.timeline({
+                repeat: -1,
+                yoyo: true,
+                defaults: {duration: 1, ease: "power1.inOut"}
+            });
+
+            tl.to(car, {
+                y: 800,
+                opacity: 1
+            })
+            .to(car, {
+                y: 900,
+                opacity: 0
+            });
+        });
+    </script>
+</body>
+</html>
